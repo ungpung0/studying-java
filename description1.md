@@ -1,4 +1,4 @@
-<h1>Java Description</h1>
+<h1>Java Description 1장.</h1>
 <h2>Java 정의</h2>
 <p>Java는 선 마이크로시스템즈(Sun Microsystems)社에서 개발된 <b>객체지향 프로그래밍 언어(OOP: Object-Oriented Programming)</b>이다. 기존의 'Windows, Unix, Linux' 등의 플랫폼에 구애받던 다른 프로그래밍 언어와 달리, 독립적인 실행환경인 <b>자바 플랫폼(Java Platform)</b>을 통해 프로그램을 실행할 수 있다.</p>
 
@@ -51,7 +51,69 @@
 
 <h2>객체지향 프로그래밍</h2>
 <p>C언어를 예로 들 수 있는 <b>절차 지향 프로그래밍(PP, Procedural Programming)</b>은 데이터와 함수를 따로 정의하여 프로그램을 구성하는 반면에, <b>객체 지향 프로그래밍(OOP, Object-Oriented Programming)</b>에서는 <b>클래스(class)</b>를 도입하여 데이터와 함수를 통합하여 구현할 수 있다. 즉, Java 프로그램에서는 클래스를 통해 <b>객체(object)</b>가 형성되며 객체는 현실에서의 사물과 같은 개념으로 상태와 동작을 정의한다.</p>
-<p>여기서 사용되는 개념이 바로 '<b>추상화</b>'이다. 추상화란 사물의 구체적인 사실이 아니라 추상적이고 전형적인 사실으로 사물을 설명하는 방식을 말한다.</p>
+<p>여기서 사용되는 개념이 바로 '<b>추상화</b>'이다. 추상화란 사물의 구체적인 사실이 아니라 추상적이고 전형적인 사실으로 사물을 설명하는 방식을 말한다. 소스를 통해 C 언어와 비교해보자.</p>
+
+```c
+int english[2]; // English score.
+int math[2];    // Math score.
+
+void inputGrade() { // Input Funtion.
+    english[0] = 90;
+    english[1] = 80;
+    math[0] = 85;
+    math[1] = 80;
+}
+
+void outputGrade() { // Output Function.
+    printf("%d, %d", (english[0] + math[0]), (english[1] + math[1]));
+}
+
+int main(void) { // Main Function.
+    inputGrade();
+    outputGrade();
+}
+
+```
+<b>▲ 영어, 수학 성적 입력 프로그램 (C 언어)</b>
+
+```java
+class Grade {
+
+    int english;
+    int math;
+
+    void output() {
+
+        System.out.println(english + math);
+
+    }
+}
+
+public class GradeOutput {
+
+    public static void main(String[] args) {
+
+        // create grade object.
+        Grade grade1, grade2;
+        grade1 = new Grade();
+        grade2 = new Grade();
+        
+        // input score.
+        grade1.english = 90;
+        grade1.math = 85;
+        grade2.english = 80;
+        grade2.math = 80;
+
+        // output score.
+        grade1.output();
+        grade2.output();
+
+    }
+}
+```
+<b>▲ 영어, 수학 성적 입력 프로그램 (Java 언어)</b>
+<p>C의 경우 영어, 수학 성적 변수를 먼저 정의하고, 입력 함수와 출력 함수를 정의하여
+main() 함수에서 호출한다.<br>반면 Java의 경우 성적을 추상화하는 클래스를 정의하고 변수와 총점을 구하여 출력하는 메소드를 구성한다. 그리고 작성한 클래스를 사용하여 main() 메소드에 프로그램을 작성한다.</p>
 
 <h2>코드 구성 요소</h2>
 
@@ -84,15 +146,19 @@
  * 'Hello World' example.
 **/
 public class HelloApplication {
+    
     public static void main(String[] args) { // Main Method.
+        
         // Print 'Hello World'.
         System.out.print("Hello World");
+    
     }
 }
 ```
-<p>△Hello World를 출력하는 Java 애플리케이션 소스 코드 예제.</p>
+<p>▲ Hello World를 출력하는 Java 애플리케이션 소스 코드 예제</p>
 
-
+<h2>상속</h2>
+<p>상속(inheritance)이란 클래스 간의 관계를 나타내는 용어로서, 클래스 A가 클래스 B의 구성요소를 물려받아 사용하는 것을 예로 들 수 있다. 이때 클래스 A를 '<b>서브(sub)</b>', '<b>자식(child)</b>', '<b>파생(derived)</b>', '<b>하위(lower)</b>' 클래스라 부르고, 클래스 B를 '<b>슈퍼(super)</b>', '<b>부모(parent)</b>', '<b>기반(base)</b>', '<b>상위(higher)</b>' 클래스라 부른다.<br>슈퍼 클래스는 서브 클래스의 공통적인 특성 및 기능을 추상화하고, 서브 클래스는 이를 재사용하여 프로그램을 구성하므로, 프로그램은 간결해지고 이해가 쉬워진다.</p>
 
 <style>
     h2 {
