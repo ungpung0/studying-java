@@ -13,9 +13,6 @@ public class Main {
         int count = 0;
         for(int i = 0; i < sentense.length(); i++) {
             char current = sentense.charAt(i);
-            for(int j = 0; j < array.length; j++) {
-                if(current != )
-            }
         }
 
         bufferedWriter.write(String.valueOf(count));
