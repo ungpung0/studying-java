@@ -1,4 +1,4 @@
-package basic.stringprocess.answer08;
+package basic.stringProcess.answer08;
 
 import java.io.*;
 

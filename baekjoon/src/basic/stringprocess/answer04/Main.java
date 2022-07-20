@@ -1,4 +1,4 @@
-package basic.stringprocess.answer04;
+package basic.stringProcess.answer04;
 
 import java.util.Scanner;
 

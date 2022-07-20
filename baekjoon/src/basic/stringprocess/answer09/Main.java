@@ -1,7 +1,6 @@
-package basic.stringprocess.answer09;
+package basic.stringProcess.answer09;
 
 import java.io.*;
-import java.util.StringTokenizer;
 
 public class Main {
 

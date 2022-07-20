@@ -3,7 +3,7 @@
  * 문제 설명 : N개의 숫자가 공백없이 쓰일 때, 숫자들을 합친 결과를 출력.
  */
 
-package basic.stringprocess.answer02;
+package basic.stringProcess.answer02;
 
 import java.io.*;
 import java.util.Scanner;
