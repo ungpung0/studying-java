@@ -9,12 +9,11 @@ public class Main {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
         String sentense = "";
-        StringTokenizer stringTokenizer;
 
         while((sentense = bufferedReader.readLine()) != null) {
-            stringTokenizer = new StringTokenizer(sentense);
+            StringTokenizer stringTokenizer = new StringTokenizer(sentense);
             int result = 0;
-            while(stringTokenizer.hasMoreTokens())
+            while(stringTokenizer.hasMoreTokens() == true)
                 result += Integer.parseInt(stringTokenizer.nextToken());
             bufferedWriter.write(result + "\n");
         }
