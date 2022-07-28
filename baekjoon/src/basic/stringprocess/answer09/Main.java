@@ -7,19 +7,23 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String templete = "c=c-dz=d-ljnjs=z=";
-        String[] input = bufferedReader.readLine().split("");
-        int count = 0;
-        for(int i = 0; i < input.length; i++) {
-            if(templete.indexOf(input[i]) == -1) {
 
-            }else {
+        String input = bufferedReader.readLine();
+        String[] array = {"c=", "c-", "dz=", "d-", "lj", "nj", "s=", "z="};
 
+        for(int i = 0; i < array.length; i++) {
+            while(true) {
+                if(input.contains(array[i]))
+                    input = input.replace(array[i], "X");
+                else
+                    break;
             }
         }
-        bufferedWriter.write(String.valueOf(count));
+
+        bufferedWriter.write(String.valueOf(input.length()));
         bufferedWriter.close();
         bufferedReader.close();
     }
+
 }
 
