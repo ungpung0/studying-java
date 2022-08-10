@@ -215,7 +215,102 @@ System.out.println(arrayList.remove(0));   // "2"
 
 <p>remove는 전달되는 파라미터에 따라서 반환값이 다르다. 삭제할 데이터를 전달하면 삭제 결과를 boolean으로 반환한다. 삭제할 index를 전달하면 삭제한 데이터를 반환한다.</p>
 
-<li></li>
+<h2>효율적인 ArrayList 추가</h2><hr/>
+<p>ArrayList에 새로운 요소를 추가할 때 위에서 설명한 add 메소드를 사용한다고 했다. 그렇다면 만약 기존에 존재하는 데이터를 효율적으로 요소로 추가하는 방법이 없을까?</p>
+
+```java
+// String 배열을 요소로 전달하는 경우.
+String[] data = {"0", "1", "2"};
+ArrayList<String> arrayList = new ArrayList<>(Arrays.asList(data));
+
+// String 자료형을 여러개 전달하는 경우.
+ArrayList<String> arrayList1 = new ArrayList<>(Arrays.asList("0", "1", "2"));
+
+// 결과를 출력.
+System.out.println(arrayList);
+```
+
+<p>결과를 출력할 때 구분자를 중간에 삽입해야 하는 경우 반복문을 이용하여 문자열을 추가하는 방식으로 담는 방법이 있는데, 보다 효율적인 방법이 존재한다.</p>
+
+```java
+// 기존 방식.
+ArrayList<String> arrayList = new ArrayList<>(Arrays.asList("0", "1", "2"));
+String result = "";
+for(int i = 0; i < arrayList.size(); i++) {
+    result += arrayList.get(i);
+    result += ","; // 구분자 ","
+}
+result = result.substring(0, result.length() - 1); // 마지막 "," 제거.
+System.out.println(result);
+
+// 효율적인 방식. (String.join)
+ArrayList<String> arrayList1 = new ArrayList<>(Arrays.asList("0", "1", "2"));
+String result = String.join(",", arrayList1); // 구분자 "," 삽입.
+System.out.println(result); // "0,1,2"
+```
+
+<p>물론 배열에도 적용이 가능하다.</p>
+
+```java
+String[] array = new String[]{"0", "1", "2"};
+String result = String.join(",", array);
+System.out.println(result); // "0,1,2"
+```
+
+<h2>리스트 정렬하기</h2><hr/>
+<p>리스트를 순서대로 정렬하기 위해 sort 메소드를 사용할 수 있다.</p>
+
+```java
+ArrayList<String> arrayList = new ArrayList<>(Arrays.asList("2", "1", "0"));
+arrayList.sort(Comparator.naturalOrder());
+System.out.println(arrayList);
+```
+
+<p>순방향은 Comparator.naturalOrder()를 역방향은 Comparator.reverseOrder()을 사용한다.</p>
+
+<h2>맵(Map)</h2><hr/>
+<p>Map은 key와 value를 한 쌍으로 대응관계를 쉽게 표현할 수 있는 자료형이다. 요소를 순차적으로 접근하지 않고 key를 기준으로 접근하기에 검색에 유리하다. Map 자료형에는 HashMap, LinkedHashMap, TreeMap 등이 있다.</p>
+
+<li>HashMap</li>
+<p>요소들은 Set 구조(K,V)로 저장된다. 출력할 때 순서가 존재하지 않는다.</p>
+<li>LinkedHashMap</li>
+<p>FIFO(First in First Out) 방식으로 LinkedList 형식으로 저장된다. 사용자가 입력한 순서대로 출력된다.</p>
+<li>TreeMap</li>
+<p>인덱스 역할을 수행하는 키 값이 알파벳 순서대로 자동 정렬된다. 알파벳 순서대로 출력한다.</p>
+
+<h2>Map 메소드</h2><hr/>
+<li>put</li>
+<p>List의 add와 비슷한 방식으로 요소를 추가할 때 put 메소드를 사용한다.</p>
+
+```java
+HashMap<String, String> hashMap = new HashMap<>();
+map.put("people", "사람");
+map.put("animal", "동물");
+```
+
+<li>get</li>
+<p>특정 요소의 key에 대응하는 value를 출력할 때 사용하는 메소드이다.</p>
+
+```java
+System.out.println(hashMap.get("humans")); // null.
+System.out.println(hashMap.getOrDefault("humans", "사람")); // "사람".
+```
+
+<p>get의 결과로 값이 존재하지 않으면 null 값을 출력한다. getOrDefault을 사용하면 존재하지 않을 때 대체 값을 출력할 수 있다.</p>
+
+<li>containsKey</li>
+<p>containsKey는 특정 map의 key 존재여부를 boolean으로 반환한다.</p>
+
+```java
+System.out.println(hashMap.containsKey("people")); // true
+```
+
+<li>remove</li>
+<p>remove는 파라미터로 주어진 key값의 요소를 삭제하고 value를 출력한다.</p>
+
+```java
+System.out.println(hashMap.remove("people")); // "사람".
+```
 
 <style>
     h2 
