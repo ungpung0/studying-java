@@ -1,8 +1,8 @@
-<h2>원시 자료형(primitive data type)</h2><hr/>
+<h1>원시 자료형(primitive data type)</h1>
 <p>int, long, double, float, boolean, char 등의 일반적인 literal 값을 사용하는 변수에 사용하는 자료형이다. 주의할 것은 String은 literal 표기가 가능하나 primitive 자료형이 아니라는 것이다.</p>
 <p>primitive 자료형은 각자 대응하는 Wrapper 클래스가 존재한다. 값 대신에 객체를 교환할 때 사용하며 객체 중심적 설계에 유리하다.</p>
 
-<h2>String 메소드</h2><hr/>
+<h1>String 메소드</h1>
 <li>equals</li>
 <p>equals는 문자열의 일치 여부를 boolean 값으로 반환한다.</p>
 
@@ -109,7 +109,7 @@ System.out.printf("I eat %d apples.", 3); // "I eat 3 apples."
 
 <p>String.format은 문자열을 리턴하는데 콘솔 창에 출력하기 위해서 System.out과 함께 사용해야 한다. 이것을 System.out.printf을 활용하여 단축할 수 있다.</p>
 
-<h2>StringBuffer</h2><hr>
+<h1>StringBuffer</h1>
 <p>StringBuffer는 문자열의 추가와 변경에 주로 사용하는 자료형이다.</p>
 <li>append</li>
 <p>StringBuffer는 append 메소드로 문자열을 추가할 수 있다.</p>
@@ -164,7 +164,7 @@ stringBuffer.append("Hello Java.");
 System.out.println(stringBuffer.substring(0, 5)); // "Hello"
 ```
 
-<h2>리스트(List)</h2><hr>
+<h1>리스트(List)</h1>
 <p>List는 배열의 단점인 정적인 크기를 동적으로 관리하기 위해 고안된 자료형이다. List 자료형에는 ArrayList, Vector, LinkedList 등이 있다.</p>
 <li>Vector</li>
 <p>Vector는 후술할 ArrayList의 기능에 추가적인 자동 동기화 기능을 갖는다. 즉, 복수 사용자가 공통 자원에 접근하는 멀티스레드 환경에서 사용할 때 유리하다. 그러나 동기화가 불필요한 환경에서 리소스 낭비를 가져올 수 있다.</p>
@@ -268,7 +268,9 @@ System.out.println(arrayList);
 
 <p>순방향은 Comparator.naturalOrder()를 역방향은 Comparator.reverseOrder()을 사용한다.</p>
 
-<h2>맵(Map)</h2><hr/>
+
+
+<h1>맵(Map)</h1>
 <p>Map은 key와 value를 한 쌍으로 대응관계를 쉽게 표현할 수 있는 자료형이다. 요소를 순차적으로 접근하지 않고 key를 기준으로 접근하기에 검색에 유리하다. Map 자료형에는 HashMap, LinkedHashMap, TreeMap 등이 있다.</p>
 
 <li>HashMap</li>
@@ -312,7 +314,123 @@ System.out.println(hashMap.containsKey("people")); // true
 System.out.println(hashMap.remove("people")); // "사람".
 ```
 
+<li>size</li>
+<p>Map의 요소 개수를 반환한다.</p>
+
+```java
+System.out.println(hashMap.size()); // 1.
+```
+
+<li>keySet</li>
+<p>keySet은 map의 모든 key를 Set 자료형으로 반환한다.</p>
+
+```java
+TreeMap<String, String> treehMap = new TreeMap<>();
+treehMap.put("people", "사람");
+treehMap.put("animal", "동물");
+System.out.println(treehMap.keySet()); // ["animal", "people"].
+```
+
+<h1>집합(Set)</h1>
+<p>Set은 수학의 집합과 같은 원리를 적용할 수 있는 자료형이다. List, Map과 달리 인덱싱하지 않기 때문에 요소의 중복을 방지할 수 있다. Set의 자료형에는 HashSet, TreeSet, LinkedHashSet 등이 있다. TreeSet은 요소를 알파벳 순으로, LinkedHashSet은 입력 순서대로 정렬한다.</p>
+
+```java
+HashSet<String> hashSet = new HashSet<>(Arrays.asList("H", "E", "L", "L", "O"));
+System.out.println(hashSet); // [E, H, L, O].
+```
+
+<p>위의 결과와 같이 중복할 허용하지 않기 때문에 하나의 "L"을, 인덱싱하여 정렬하지 않기 때문에 정렬되지 않았다.</p>
+
+<h2>Set의 활용</h2><hr/>
+<p>중학교 즈음 수학에서 배운 집합을 기억할 것이다. Set은 집합의 원리를 적용할 수 있다.</p>
+
+<li>교집합</li>
+
+```java
+HashSet<Integer> hashSet1 = new HashSet<>(Arrays.asList(1, 2, 3, 4, 5, 6));
+HashSet<Integer> hashSet2 = new HashSet<>(Arrays.asList(4, 5, 6, 7, 8, 9));
+HashSet<Integer> intersection = new HashSet<>(hashSet1); // hashSet1을 복사.
+
+intersection.retainAll(hashSet2); // 교집합 수행.
+System.out.println(intersection); // [4, 5, 6].
+```
+
+<p>교집합은 집합 간의 공통 분모의 집합을 말한다. retainAll로 특정 Set과 비교하여 공통 집합을 출력할 수 있다.</p>
+
+<li>합집합</li>
+
+```java
+HashSet<Integer> union = new HashSet<>(hashSet1);
+union.addAll(hashSet2); // 합집합 수행.
+System.out.println(union); // [1, 2, 3, 4, 5, 6, 7, 8, 9].
+```
+
+<p>합집합은 주어진 집합들의 요소들을 합친 집합을 말한다. addAll로 특정 Set과 합친 집합을 출력할 수 있다.</p>
+
+<li>차집합</li>
+
+```java
+HashSet<Integer> substract = new HashSet<>(hashSet1);
+substract.removeAll(hashSet2); // 차집합 수행.
+System.out.println(substract); // [1, 2, 3].
+```
+
+<p>차집합은 특정 집합과의 공통 분모를 제거한 집합을 말한다. removeAll로 특정 Set과의 차집합을 출력할 수 있다.</p>
+
+<h2>Set 메소드</h2><hr/>
+<li>add</li>
+<p>Set에 요소를 추가할 때 사용한다.</p>
+
+```java
+LinkedHashSet<String> linkedHashSet = new LinkedHashSet<>();
+linkedHashSet.add("Hello");
+linkedHashSet.add("Java");
+linkedHashSet.add("World");
+System.out.println(linkedHashSet); // ["Hello", "Java", "World"].
+```
+
+<li>addAll</li>
+<p>Set에 동시에 여러 요소들을 추가할 때 사용한다.</p>
+
+```java
+linkedHashSet.addAll("Hello", "Java", "World");
+System.out.println(linkedHashSet); // ["Hello", "Java", "World"].
+```
+
+<li>remove</li>
+<p>Set의 특정 값을 제거할 때 사용한다.</p>
+
+```java
+linkedHashSet.remmove("Java");
+System.out.println(linkedHashSet); // ["Hello", "World"].
+```
+
+<h1>상수집합(Enum)</h1>
+<p>서로 관련있는 여러 개의 상수 집합을 정의할 때 사용하는 자료형으로, 코드를 명확하게 만들고, 정의한 상수만을 사용해서 매직 넘버로 인한 오류를 방지할 수 있다.</p>
+
+```java
+// Enum 생성.
+enum CoffeeType { AMERICANO, ICE_AMERICANO, CAFE_LATTE };
+
+// 개별 출력.
+System.out.println(CoffeeType.AMERICANO);     // AMERICANO.
+System.out.println(CoffeeType.ICE_AMERICANO); // ICE_AMERICANO.
+System.out.println(CoffeeType.CAFE_LATTE);    // CAFE_LATTE.
+
+// enhanced for문 출력.
+for(CoffeeType coffeeType : CoffeeType.values()) {
+    System.out.println(coffeeType); // AMERICANO, ICE_AMERICANO, CAFE_LATTE.
+}
+```
+
+<!-- css -->
 <style>
+    h1 
+    {
+        font-weight: bold;
+        margin-top: 10px;
+    }
+
     h2 
     {
         font-weight: bold;
